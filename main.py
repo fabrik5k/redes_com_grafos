@@ -2,20 +2,15 @@
 import Grafo
 
 if __name__ == '__main__':
-    # Cria um digrafo com 5 vértices
+    # Cria um digrafo com 6 vértices
     digrafo = Grafo.Digrafo(6)
-
-    # Adiciona algumas arestas e seus respectivos pesos
-    # digrafo.adicionar_aresta(0, 1, 3)
-    # digrafo.adicionar_aresta(0, 2, 5)
-    # digrafo.adicionar_aresta(1, 3, 1)
-    # digrafo.adicionar_aresta(3, 4, 2)
-    # digrafo.adicionar_aresta(4, 0, 8)
 
     #A: 0
     #B: 1
     #C: 2
     #D: 3
+    #E: 4
+    #F: 5
 
     digrafo.adicionar_aresta(0, 1, 2)
     digrafo.adicionar_aresta(1, 2, 5)
@@ -36,6 +31,11 @@ if __name__ == '__main__':
     # Exibe a matriz de adjacência do digrafo
     print("Matriz de Adjacência:")
 
+    origem = int(input("Digite o vértice de origem (0-5): "))
+    destino = int(input("Digite o vértice de destino (0-5): "))
 
-    digrafo.floyd_warshall()
+    caminho, peso_total = digrafo.encontrar_caminho(origem, destino)
+    if caminho:
+        print(f"Caminho mais curto de {origem} para {destino}: {caminho}")
+        print(f"Peso total do caminho: {peso_total}")
 

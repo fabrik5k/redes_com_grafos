@@ -105,3 +105,27 @@ class Digrafo:
         print("\n")
         # Retorna a matriz de distâncias mais curtas
         return dist
+
+    def encontrar_caminho(self, origem, destino):
+        if origem < 0 or origem >= self.num_vertices or destino < 0 or destino >= self.num_vertices:
+            print("Vértice de origem ou destino inválido!")
+            return None, None
+
+        distancias = self.floyd_warshall()
+
+        if distancias[origem][destino] == float('inf'):
+            print("Não há caminho entre a origem e o destino.")
+            return None, None
+
+        peso_total = 0
+
+        caminho = [origem]
+        while origem != destino:
+            for i in range(self.num_vertices):
+                if distancias[origem][destino] == distancias[i][destino] + self.matriz_adjacencia[origem][i]:
+                    peso_total += self.matriz_adjacencia[origem][i]
+                    origem = i
+                    caminho.append(origem)
+
+        return caminho, peso_total
+
